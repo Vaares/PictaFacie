@@ -1,0 +1,25 @@
+.form-input {
+    width: 300px;
+    height:40px;
+    border-radius:6px;
+    padding: 10px 13px 13px;
+    border-style:none;
+    background-color:var(--text-color-light);
+}
+.form-input-icon {
+    width: 20px;
+    position: relative;
+    z-index: 1;
+    top: -35%;
+    left: 90%;
+    cursor: pointer;
+}
+.form-input-icon2 {
+    width: 20px;
+    position: relative;
+    align-items: center;
+    z-index: 1;
+    top: -24%;
+    left: 90%;
+    cursor: pointer;
+}
