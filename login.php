@@ -1,8 +1,31 @@
-<?php 
- include ('conexao.php');
+<?php  
+include ('conexao.php');
 
- if(isset($_POST['email']) isset($_POST['senha']))
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verifica se o formulário foi enviado (método POST)
+
+    // Recupera os dados do formulário
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    // Insere os dados no banco de dados
+    $sql = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
+
+    if ($stmt->execute()) {
+        // Cadastro realizado com sucesso!
+        echo "Cadastro realizado com sucesso! Você pode fazer login agora.";
+    } else {
+        // Erro durante a inserção
+        echo "Erro ao cadastrar. Tente novamente.";
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +88,7 @@ usado para não dar erro no codigo. -->
         <div class="light container"></div>
         <div class="login-container" id="login-container">
             <div class="form-container">
-                <form action="" method="POST" class="form form-login">
+                <form action="loginuser.php" method="POST" class="form form-login">
                     <br>
                     <h2 class="form-title">Entrar com</h2>
                     <div class="form-social">
@@ -81,12 +104,13 @@ usado para não dar erro no codigo. -->
                     </div>
                     <p class="form-text">Ou utilize sua conta</p>
                     <div class="form-input-container">
-                        <input type="email" class="form-input" placeholder="Email">
+                        <input type="email" id="email" class="form-input" name="email" placeholder="Email">
                         <input type="password" id="password" name="senha" class="form-input" placeholder="Senha">
                         <img src="eye-open.png" id="eyeicon" class="form-input-icon">
                     </div>
                     <a href="#" class="form-link">Esqueceu a Senha?</a>
-                    <button class="form-button">Logar</button>
+
+                    <input type="submit" class="form-button">
                     <p class="mobile-text">Não tem conta?
                         <a href="#" id="open-register-mobile">Registre-se</a>
                     </p>
@@ -108,12 +132,12 @@ usado para não dar erro no codigo. -->
                     </div>
                     <p class="form-text">Ou cadastre com seu email</p>
                     <div class="form-input-container">
-                        <input type="nome" class="form-input" placeholder="Nome">
-                        <input type="email" class="form-input" placeholder="Email">
+                        <input type="nome" class="form-input" placeholder="Nome" name="nome">
+                        <input type="email" id="email2" class="form-input" name="email" placeholder="Email">
                         <input type="password" id="password2" name="senha" class="form-input" placeholder="Senha">
                         <img src="eye-close.png" id="eyeicon2" class="form-input-icon2">
                     </div>
-                    <button type="button" class="form-button">Cadastrar</button>
+                    <button type="submit" class="form-button" name="submit">Cadastrar</button>
                     <br>
                     <p class="mobile-text">Já tem conta?
                         <a href="#" id="open-login-mobile">Login</a>
