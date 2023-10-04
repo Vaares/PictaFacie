@@ -1,3 +1,9 @@
+<?php 
+ include ('conexao.php');
+
+ if(isset($_POST['email']) isset($_POST['senha']))
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +65,7 @@ usado para não dar erro no codigo. -->
         <div class="light container"></div>
         <div class="login-container" id="login-container">
             <div class="form-container">
-                <form class="form form-login">
+                <form action="" method="POST" class="form form-login">
                     <br>
                     <h2 class="form-title">Entrar com</h2>
                     <div class="form-social">
@@ -76,7 +82,7 @@ usado para não dar erro no codigo. -->
                     <p class="form-text">Ou utilize sua conta</p>
                     <div class="form-input-container">
                         <input type="email" class="form-input" placeholder="Email">
-                        <input type="password" id="password" class="form-input" placeholder="Senha">
+                        <input type="password" id="password" name="senha" class="form-input" placeholder="Senha">
                         <img src="eye-open.png" id="eyeicon" class="form-input-icon">
                     </div>
                     <a href="#" class="form-link">Esqueceu a Senha?</a>
@@ -86,7 +92,7 @@ usado para não dar erro no codigo. -->
                     </p>
                     <br>
                 </form>
-                <form action="login.php" class="form form-reg">
+                <form action="" method="POST" class="form form-reg">
                     <br>
                     <h2 class="form-title">Criar Conta</h2>
                     <div class="form-social">
@@ -104,7 +110,7 @@ usado para não dar erro no codigo. -->
                     <div class="form-input-container">
                         <input type="nome" class="form-input" placeholder="Nome">
                         <input type="email" class="form-input" placeholder="Email">
-                        <input type="password" id="password2" class="form-input" placeholder="Senha">
+                        <input type="password" id="password2" name="senha" class="form-input" placeholder="Senha">
                         <img src="eye-close.png" id="eyeicon2" class="form-input-icon2">
                     </div>
                     <button type="button" class="form-button">Cadastrar</button>
